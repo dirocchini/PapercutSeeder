@@ -38,7 +38,7 @@ namespace Domain.Entities
                 .RuleFor(u => u.Department, f => departments[new Random().Next(departments.Count - 1)])
                 .RuleFor(u => u.Restricted, "FALSE")
                 .RuleFor(u => u.Home, (f,u) => $"/home/users/{u.Login.ToLower()}")
-                .RuleFor(u => u.Pin, f => f.Random.Number(1000).ToString().PadLeft(4, '0'));
+                .RuleFor(u => u.Pin, f => f.Random.Number(9999).ToString().PadLeft(4, '0'));
 
             return user;
         }

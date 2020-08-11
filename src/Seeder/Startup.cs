@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Seeder.Options;
 using Serilog;
 using Shared;
-using DependencyInjection = Infrastructure.DependencyInjection;
+using Infrastructure;
 
 namespace Seeder
 {
@@ -23,13 +23,13 @@ namespace Seeder
             var config = LoadConfiguration(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
             services.AddSingleton(config);
 
-            
+            services.AddApplication();
+            services.AddShared();
+            services.AddInfrastructure();
 
-            services.AddRetryOptions(config);
             services.AddPapercutOptions(config);
             services.AddUserOptions(config);
-            services.AddApplication();
-
+            services.AddRetryOptions(config);
 
             services.AddSerilog(config, Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
             services.AddLogging(configure => configure

@@ -13,12 +13,5 @@ namespace Application
             return services;
         }
 
-        public static void AddRetryOptions(this IServiceCollection services, IConfiguration configuration)
-        {
-            var options = new RetryPolicyOptions();
-            var section = configuration.GetSection("RetryPolicy");
-            section.Bind(options);
-            services.Configure<RetryPolicyOptions>(section);
-        }
     }
 }
