@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Bogus;
 
-namespace Seeder.Entities
+namespace Domain.Entities
 {
     public class User
     {

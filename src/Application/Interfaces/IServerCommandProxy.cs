@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CookComputing.XmlRpc;
-using PaperCut;
+﻿using CookComputing.XmlRpc;
+using Shared.Structs;
 
-namespace Seeder.Interfaces
+namespace Application.Interfaces
 {
     /// <summary>
     ///  This is an XML-RPC interface to expose the server's APIs.  Used by the standard ServerCommandProxy class below.

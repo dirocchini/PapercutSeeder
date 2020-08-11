@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Application.Interfaces;
 using Microsoft.Extensions.Logging;
-using Seeder.Interfaces;
 
-namespace Seeder.Services
+namespace Infrastructure.Services
 {
    public abstract class BaseService<T>
     {

@@ -11,28 +11,6 @@ namespace Seeder.Options
 {
     public static class Extensions
     {
-        public static void AddRetryOptions(this IServiceCollection services, IConfiguration configuration)
-        {
-            var options = new RetryPolicyOptions();
-            var section = configuration.GetSection("RetryPolicy");
-            section.Bind(options);
-            services.Configure<RetryPolicyOptions>(section);
-        }
-        public static void AddPapercutOptions(this IServiceCollection services, IConfiguration configuration)
-        {
-            var options = new PapercutOptions();
-            var section = configuration.GetSection("Papercut");
-            section.Bind(options);
-            services.Configure<PapercutOptions>(section);
-        }
-
-        public static void AddUserOptions(this IServiceCollection services, IConfiguration configuration)
-        {
-            var options = new UserOptions();
-            var section = configuration.GetSection("UserOptions");
-            section.Bind(options);
-            services.Configure<UserOptions>(section);
-        }
         public static IServiceCollection AddSerilog(this IServiceCollection services, IConfiguration configuration, string environment)
         {
             var template = "{Timestamp:yyyy-MM-dd HH:mm:ss.ffffff}::{Level:u4}:{SourceContext} - {Message} {Exception}{NewLine}";

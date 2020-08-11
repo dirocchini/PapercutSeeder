@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Bogus;
+﻿using System.Collections.Generic;
+using Application.Interfaces;
+using Domain.Entities;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Seeder.Entities;
-using Seeder.Interfaces;
-using Seeder.Options;
+using Shared.Options;
 
-namespace Seeder.Services
+namespace Infrastructure.Services
 {
     public class UserService : BaseService<UserService>, IUserOperations
     {
@@ -27,7 +24,7 @@ namespace Seeder.Services
             if (users.Count >= 50)
                 return users;
 
-            _logger.LogInformation("  MUST CREATE USERS");
+            LoggerExtensions.LogInformation(_logger, "  MUST CREATE USERS");
 
             CreateUserFakeList();
 
@@ -44,7 +41,7 @@ namespace Seeder.Services
             {
                 var user = new User().GetFakeUser(departments, offices);
 
-                _logger.LogInformation("   CREATING USER {de} OF {ate} - {user}", i + 1, 50, user.Login);
+                LoggerExtensions.LogInformation(_logger, "   CREATING USER {de} OF {ate} - {user}", i + 1, 50, user.Login);
 
                 _papercutService.AddNewUser(user.Login);
 
