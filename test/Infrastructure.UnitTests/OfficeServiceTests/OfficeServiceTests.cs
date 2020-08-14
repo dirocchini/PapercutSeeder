@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Application.Interfaces;
-using Bogus;
+﻿using System.Collections.Generic;
 using Infrastructure.Services;
-using Moq;
 using Xunit;
 
-namespace Infrastructure.UnitTests.OfficeTests
+namespace Infrastructure.UnitTests.OfficeServiceTests
 {
-    public class OfficeTests
+    public class OfficeServiceTests
     {
         private readonly OfficeService _officeService;
 
-        public OfficeTests()
+        public OfficeServiceTests()
         {
             _officeService = new OfficeService();
         }

@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Infrastructure.Services;
 using Xunit;
 
-namespace Infrastructure.UnitTests.DepartmentTests
+namespace Infrastructure.UnitTests.DepartmentServiceTests
 {
-    public class DepartmentTests
+    public class DepartmentServiceTests
     {
         private readonly DepartmentService _departmentService;
 
-        public DepartmentTests()
+        public DepartmentServiceTests()
         {
             _departmentService = new DepartmentService();
         }
