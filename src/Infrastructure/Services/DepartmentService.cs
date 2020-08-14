@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Application.Interfaces;
 using Bogus;
+using Shared.Constants;
 
 namespace Infrastructure.Services
 {
@@ -10,17 +11,16 @@ namespace Infrastructure.Services
     {
         public List<string> GetFakeDepartments()
         {
-            var prefix = "fake department - ";
             return new List<string>()
             {
-                prefix + new Faker().Commerce.Department(),
-                prefix + new Faker().Commerce.Department(),
-                prefix + new Faker().Commerce.Department(),
-                prefix + new Faker().Commerce.Department(),
-                prefix + new Faker().Commerce.Department(),
-                prefix + new Faker().Commerce.Department(),
-                prefix + new Faker().Commerce.Department(),
-                prefix + new Faker().Commerce.Department()
+                DepartmentConstants.FAKE_DEPARTMENT_PREFIX + new Faker().Commerce.Department(),
+                DepartmentConstants.FAKE_DEPARTMENT_PREFIX + new Faker().Commerce.Department(),
+                DepartmentConstants.FAKE_DEPARTMENT_PREFIX + new Faker().Commerce.Department(),
+                DepartmentConstants.FAKE_DEPARTMENT_PREFIX + new Faker().Commerce.Department(),
+                DepartmentConstants.FAKE_DEPARTMENT_PREFIX + new Faker().Commerce.Department(),
+                DepartmentConstants.FAKE_DEPARTMENT_PREFIX + new Faker().Commerce.Department(),
+                DepartmentConstants.FAKE_DEPARTMENT_PREFIX + new Faker().Commerce.Department(),
+                DepartmentConstants.FAKE_DEPARTMENT_PREFIX + new Faker().Commerce.Department()
             };
         }
     }

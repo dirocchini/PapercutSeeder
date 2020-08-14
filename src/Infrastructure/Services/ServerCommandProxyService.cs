@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Application.Interfaces;
 using CookComputing.XmlRpc;
+using Domain.Entities;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Shared.Options;
@@ -1967,6 +1968,37 @@ namespace Infrastructure.Services
             {
                 LoggerExtensions.LogError(_logger, "Error getting users. Returning empty list. Error details {error}", e.ToString());
                 return new List<string>();
+            }
+        }
+
+        public void AddFakeUsersToPapercut(List<string> departments, List<string> offices, int maxUsersToCreate)
+        {
+            for (var i = 0; i < maxUsersToCreate; i++)
+            {
+                var user = new User().GetFakeUser(departments, offices);
+
+                LoggerExtensions.LogInformation(_logger, "   CREATING USER {de} OF {ate} - {user}", i + 1, 50, user.Login);
+
+                AddNewUser(user.Login);
+
+                string[] primaryCarNumber = { "primary-card-number", user.PrimaryCardNumber };
+                string[] secondaryCardNumber = { "secondary-card-number", user.SecondaryCardNumber };
+                string[] userDepartment = { "department", user.Department };
+                string[] email = { "email", user.Email };
+                string[] fullName = { "full-name", user.FullName };
+                string[] userNameAlias = { "username-alias", user.UserNameAlias };
+                string[] notes = { "notes", user.Notes };
+                string[] userOffice = { "office", user.Office };
+                string[] restricted = { "restricted", "FALSE" };
+                string[] home = { "home", user.Home };
+                string[] cardPin = { "card-pin", user.Pin };
+
+                SetUserProperties(user.Login,
+                    new string[][]
+                    {
+                        primaryCarNumber, secondaryCardNumber, userDepartment, email, fullName, userNameAlias, notes,
+                        userOffice, restricted, home, cardPin
+                    });
             }
         }
 
