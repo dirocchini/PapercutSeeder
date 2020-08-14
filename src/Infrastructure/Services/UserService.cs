@@ -9,11 +9,15 @@ namespace Infrastructure.Services
 {
     public class UserService : BaseService<UserService>, IUserOperations
     {
+        private readonly IOfficeOperations _officeService;
+        private readonly IDepartmentOperations _departmentService;
         private readonly UserOptions _options;
 
-        public UserService(IServerCommandOperations papercutService, ILogger<UserService> logger, IOptions<UserOptions> options) : base(
+        public UserService(IServerCommandOperations papercutService, ILogger<UserService> logger, IOptions<UserOptions> options, IOfficeOperations officeService, IDepartmentOperations departmentService) : base(
             papercutService, logger)
         {
+            _officeService = officeService;
+            _departmentService = departmentService;
             _options = options.Value;
         }
 
@@ -33,13 +37,9 @@ namespace Infrastructure.Services
 
         private void CreateUserFakeList()
         {
-            List<string> departments = GetFakeDepartmentList();
-
-            List<string> offices = GetFakeOfficeList();
-
             for (var i = 0; i < _options.CreateUsersMaxQuantity; i++)
             {
-                var user = new User().GetFakeUser(departments, offices);
+                var user = new User().GetFakeUser(_departmentService.GetFakeDepartments(), _officeService.GetFakeOffices());
 
                 LoggerExtensions.LogInformation(_logger, "   CREATING USER {de} OF {ate} - {user}", i + 1, 50, user.Login);
 
@@ -64,38 +64,6 @@ namespace Infrastructure.Services
                         userOffice, restricted, home, cardPin
                     });
             }
-        }
-
-        private List<string> GetFakeOfficeList()
-        {
-            var prefix = "office ";
-            return new List<string>()
-            {
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department()
-            };
-        }
-
-        private List<string> GetFakeDepartmentList()
-        {
-            var prefix = "department ";
-            return new List<string>()
-            {
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department(),
-                prefix + new Bogus.Faker().Commerce.Department()
-            };
         }
     }
 }

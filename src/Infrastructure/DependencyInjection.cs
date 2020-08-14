@@ -15,6 +15,8 @@ namespace Infrastructure
             services.AddSingleton<IUserOperations, UserService>();
             services.AddSingleton<IPrinterOperations, PrinterService>();
             services.AddSingleton<ISharedAccountOperations, SharedAccountService>();
+            services.AddSingleton<IOfficeOperations, OfficeService>();
+            services.AddSingleton<IDepartmentOperations, DepartmentService>();
 
             return services;
         }

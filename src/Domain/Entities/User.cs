@@ -6,20 +6,20 @@ namespace Domain.Entities
 {
     public class User
     {
-        public string Login { get; set; }
-        public string FirstName{ get; set; }
-        public string LastName{ get; set; }
-        public string FullName{ get; set; }
-        public string PrimaryCardNumber { get; set; }
-        public string SecondaryCardNumber { get; set; }
-        public string Email { get; set; }
-        public string UserNameAlias { get; set; }
-        public string Notes { get; set; }
-        public string Office { get; set; }
-        public string Department { get; set; }
-        public string Restricted { get; set; }
-        public string Home { get; set; }
-        public string Pin{ get; set; }
+        public string Login { get;} 
+        public string FirstName{ get;} 
+        public string LastName{ get;} 
+        public string FullName{ get;} 
+        public string PrimaryCardNumber { get;} 
+        public string SecondaryCardNumber { get;} 
+        public string Email { get;} 
+        public string UserNameAlias { get;} 
+        public string Notes { get;} 
+        public string Office { get;} 
+        public string Department { get;} 
+        public string Restricted { get;} 
+        public string Home { get;} 
+        public string Pin{ get;} 
 
         public User GetFakeUser(List<string> departments, List<string> offices)
         {
